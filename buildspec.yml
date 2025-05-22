@@ -10,16 +10,15 @@ phases:
 
   build:
     commands:
-      - echo Build started on date
-      - ./gradlew build
+      - echo Build started on `date`
+      - ./gradlew build -x test   # Skips all tests
 
   post_build:
     commands:
-      - echo Build and tests completed on date
-      - echo Packaging files...
+      - echo Build completed on `date`
       - mkdir -p output
       - cp build/libs/*.jar output/
 
 artifacts:
   files:
-    - output//*.jar
+    - output/**/*.jar

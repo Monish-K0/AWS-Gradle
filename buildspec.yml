@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  build:
+    commands:
+      - echo "Running Gradle build"
+      - chmod +x gradlew
+      - ./gradlew build
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+artifacts:
+  files:
+    - build/libs/*.jar
+reports:
+  TestReports:
+    files:
+      - build/test-results/test/*.xml
+    base-directory: build/test-results/test
+    file-format: JUNITXML
